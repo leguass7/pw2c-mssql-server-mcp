@@ -33,9 +33,13 @@ docker run --rm -p 3000:3000 \
   -e MCP_TRANSPORT=sse \
   -e MCP_PORT=3000 \
   -e MSSQL_MCP_API_KEY=change-me \
+  -e MSSQL_MCP_CONNECTIONS_FILE=/data/connections.json \
   -e DATABASE_URL="Server=host,1433;Database=db;User Id=user;Password=pass;Encrypt=true;TrustServerCertificate=true;" \
+  -v mcp_mssql_data:/data \
   ghcr.io/leguass7/pw2c-mssql-server-mcp:lts
 ```
+
+Observacao: o volume persiste o CRUD de conexoes entre reinicios ou redeploys do container.
 
 Cliente MCP (IDE/agente):
 
@@ -65,9 +69,15 @@ services:
       MCP_TRANSPORT: sse
       MCP_PORT: 3000
       MSSQL_MCP_API_KEY: change-me
+      MSSQL_MCP_CONNECTIONS_FILE: /data/connections.json
       DATABASE_URL: 'Server=host,1433;Database=db;User Id=user;Password=pass;Encrypt=true;TrustServerCertificate=true;'
+    volumes:
+      - mcp_mssql_data:/data
     ports:
       - '3000:3000'
+
+volumes:
+  mcp_mssql_data:
 ```
 
 Endpoint: `http://<ip-da-vm>:3000/mcp`
