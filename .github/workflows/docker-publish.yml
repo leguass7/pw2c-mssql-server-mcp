@@ -48,11 +48,27 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check if release image already exists
+        id: image_check
+        shell: bash
+        run: |
+          IMAGE="ghcr.io/${{ github.repository_owner }}/pw2c-mssql-server-mcp:v${{ steps.npm.outputs.version }}"
+
+          if docker manifest inspect "$IMAGE" > /dev/null 2>&1; then
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+            echo "Image already exists for version v${{ steps.npm.outputs.version }}. Skipping build."
+          else
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "No image found for version v${{ steps.npm.outputs.version }}. Building now."
+          fi
+
       - name: Setup Docker Buildx
+        if: ${{ steps.image_check.outputs.should_build == 'true' }}
         uses: docker/setup-buildx-action@v3
 
       - name: Docker metadata
         id: meta
+        if: ${{ steps.image_check.outputs.should_build == 'true' }}
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository_owner }}/pw2c-mssql-server-mcp
@@ -63,6 +79,7 @@ jobs:
             type=sha,prefix=sha-
 
       - name: Build and push image
+        if: ${{ steps.image_check.outputs.should_build == 'true' }}
         uses: docker/build-push-action@v6
         with:
           context: .
