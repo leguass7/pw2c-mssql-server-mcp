@@ -155,6 +155,36 @@ Use your client's MCP server configuration section and choose one profile:
 
 If your tool supports multiple profiles, keep both (`mssql_stdio` and `mssql_sse`) for fast environment switching.
 
+## Docker: configurable runtime mode
+
+The Docker image supports transport mode selection via environment variables:
+
+- `MCP_TRANSPORT=stdio` for local MCP process-style usage
+- `MCP_TRANSPORT=sse` to expose HTTP MCP endpoint
+- `MCP_PORT` for SSE port (default `3000`)
+
+SSE example:
+
+```bash
+docker run --rm -p 3000:3000 \
+  -e MCP_TRANSPORT=sse \
+  -e MCP_PORT=3000 \
+  -e MSSQL_MCP_API_KEY=change-me \
+  -e DATABASE_URL="Server=...;Database=...;User Id=...;Password=...;Encrypt=true;TrustServerCertificate=true;" \
+  ghcr.io/<owner>/pw2c-mssql-server-mcp:lts
+```
+
+STDIO example:
+
+```bash
+docker run --rm -i \
+  -e MCP_TRANSPORT=stdio \
+  -e DATABASE_URL="Server=...;Database=...;User Id=...;Password=...;Encrypt=true;TrustServerCertificate=true;" \
+  ghcr.io/<owner>/pw2c-mssql-server-mcp:lts
+```
+
+You can also override image arguments directly in `docker run` (for example `--sse --port 4000`).
+
 ## 4) Local development and contribution
 
 ## Scripts

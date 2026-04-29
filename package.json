@@ -1,7 +1,7 @@
 {
   "name": "pw2c-mssql-server-mcp",
   "version": "1.0.0",
-  "description": "MCP server for SQL Server (MSSQL)",
+  "description": "MCP server for SQL Server (MSSQL) with stdio/sse transports",
   "license": "MIT",
   "author": "PW2C",
   "type": "module",
@@ -12,6 +12,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leguass7/pw2c-mssql-server-mcp.git"
   },
   "bin": {
     "pw2c-mssql-server-mcp": "./dist/index.js"
@@ -27,7 +31,9 @@
     "model-context-protocol",
     "mssql",
     "sql-server",
-    "typescript"
+    "typescript",
+    "stdio",
+    "sse"
   ],
   "publishConfig": {
     "access": "public"
