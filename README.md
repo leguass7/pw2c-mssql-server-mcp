@@ -1,6 +1,6 @@
 # pw2c-mssql-server-mcp
 
-[![Publish](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/publish.yml) [![CI](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/ci.yml)
+[![Publish](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/publish.yml) [![CI](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/leguass7/pw2c-mssql-server-mcp/actions/workflows/ci.yml) [![Coverage](https://codecov.io/gh/leguass7/pw2c-mssql-server-mcp/branch/main/graph/badge.svg)](https://codecov.io/gh/leguass7/pw2c-mssql-server-mcp)
 
 English version: [README.en.md](README.en.md)
 
@@ -140,7 +140,9 @@ Observacao: tools de query/metadata aceitam `connectionName?` e usam `default` p
 - `pnpm dev`
 - `pnpm lint`
 - `pnpm test`
+- `pnpm test:coverage`
 - `pnpm test:e2e`
+- `pnpm test:e2e:coverage`
 - `pnpm build`
 - `pnpm format`
 
