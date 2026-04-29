@@ -71,3 +71,7 @@ jobs:
         run: pnpm release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push release tags
+        if: steps.changes.outputs.has_changes == 'true'
+        run: git push origin --tags
