@@ -1,12 +1,13 @@
 # pw2c-mssql-server-mcp
 
-English version: `README.en.md`
+English version: [README.en.md](README.en.md)
 
 Servidor MCP para SQL Server (MSSQL) em TypeScript, com foco em tipagem forte, arquitetura limpa e uso em agentes LLM via `stdio` e `sse`.
 
 ## 1) Abordagem e objetivo do projeto
 
 ### Objetivo
+
 Fornecer um servidor MCP confiavel para que agentes e modelos LLM possam:
 
 - validar conexao com SQL Server;
@@ -15,6 +16,7 @@ Fornecer um servidor MCP confiavel para que agentes e modelos LLM possam:
 - operar com timeout e autenticacao configurados pelo cliente.
 
 ### Abordagem tecnica
+
 O projeto segue uma estrutura em camadas, separando transporte, protocolo MCP e regras de negocio:
 
 - `src/transport`: inicializacao dos modos `stdio` e `sse`.
@@ -173,25 +175,16 @@ Se o cliente suportar varios perfis, mantenha dois perfis separados (`mssql_stdi
 
 1. Crie uma branch de trabalho.
 2. Rode em modo dev:
-
-```bash
-pnpm dev
-```
+   `pnpm dev`
 
 3. Antes de abrir PR/MR, valide tudo:
-
-```bash
-pnpm lint
-pnpm test
-pnpm test:e2e
-pnpm build
-```
+   `pnpm lint`
+   `pnpm test`
+   `pnpm test:e2e`
+   `pnpm build`
 
 4. Gere o changeset da sua alteracao:
-
-```bash
-pnpm changeset
-```
+   `pnpm changeset`
 
 ## Testes locais
 
